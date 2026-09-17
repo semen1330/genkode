@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Семён | Киберспорт</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cs-orange: #de9b35;
+    --cs-orange-bright: #ffb347;
+    --cs-green: #39ff6a;
+    --cs-green-bright: #6bff96;
+    --bg-dark: #050607;
+    --bg-panel: #0f1210;
+    --line: #23281f;
+    --text: #e8e6e1;
+    --text-dim: #8a8d90;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Rajdhani', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text);
+    background-image:
+      linear-gradient(160deg, rgba(222,155,53,0.06) 0%, transparent 35%),
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 2px, transparent 2px, transparent 40px);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, transparent, var(--cs-orange), transparent);
+    opacity: 0.8;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 440px;
+    background: linear-gradient(180deg, var(--bg-panel) 0%, #101214 100%);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 40px 32px 36px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(222,155,53,0.08);
+  }
+
+  .card::before,
+  .card::after {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--cs-orange);
+  }
+
+  .card::before {
+    top: -1px; left: -1px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .card::after {
+    bottom: -1px; right: -1px;
+    border-left: none;
+    border-top: none;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cs-orange-bright);
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+
+  .tag::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: var(--cs-orange-bright);
+    border-radius: 1px;
+    box-shadow: 0 0 8px var(--cs-orange-bright);
+  }
+
+  h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 42px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.05;
+    color: #fff;
+  }
+
+  h1 span {
+    color: var(--cs-orange);
+  }
+
+  .role {
+    margin-top: 10px;
+    font-size: 18px;
+    color: var(--text-dim);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--cs-orange) 0%, transparent 60%);
+    margin: 26px 0;
+    opacity: 0.5;
+  }
+
+  .about {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .about b {
+    color: var(--cs-orange-bright);
+    font-weight: 700;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .stat {
+    background: rgba(222,155,53,0.05);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 12px 6px;
+    text-align: center;
+  }
+
+  .stat .num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    color: var(--cs-orange-bright);
+    font-weight: 700;
+  }
+
+  .stat .label {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  .services {
+    margin-top: 28px;
+  }
+
+  .services-heading {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cs-orange-bright);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .services-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .services-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(222,155,53,0.05);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .services-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cs-green-bright);
+    flex-shrink: 0;
+  }
+
+  .cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 32px;
+    padding: 16px 20px;
+    background: var(--cs-green);
+    color: #06170c;
+    border: none;
+    border-radius: 3px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+
+  .cta:hover {
+    background: var(--cs-green-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(57,255,106,0.35);
+  }
+
+  .cta:active {
+    transform: translateY(0);
+  }
+
+  .footer-note {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="tag">Player Profile</div>
+
+    <h1>СЕМЁН<br><span>КИБЕРСПОРТСМЕН</span></h1>
+    <div class="role">CS:GO Enthusiast</div>
+
+    <div class="divider"></div>
+
+    <p class="about">
+      Привет! Меня зовут <b>Семён</b>. Живу игрой в <b>CS:GO</b> — тактика,
+      командная игра и стремление к победе каждый матч.
+    </p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="num">CS</div>
+        <div class="label">Game</div>
+      </div>
+      <div class="stat">
+        <div class="num">MVP</div>
+        <div class="label">Style</div>
+      </div>
+      <div class="stat">
+        <div class="num">GG</div>
+        <div class="label">Mindset</div>
+      </div>
+    </div>
+
+    <div class="services">
+      <div class="services-heading">Мои услуги</div>
+      <ul class="services-list">
+        <li class="services-item"><span class="services-num">01</span> Научу понимать игру</li>
+        <li class="services-item"><span class="services-num">02</span> Научу управлять спреем</li>
+        <li class="services-item"><span class="services-num">03</span> Дам полезные фишки по игре</li>
+      </ul>
+    </div>
+
+    <a class="cta" href="https://t.me/trewqgg3214" target="_blank" rel="noopener">Написать мне</a>
+    <div class="footer-note">Всегда рад новым тиммейтам и знакомствам</div>
+  </div>
+
+</body>
+</html>
