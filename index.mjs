@@ -5,23 +5,31 @@ function init() {
   console.log('агент запущен');
 }
 
+const taskQueue = [
+  'привет, как дела?',
+  'подготовь отчет за неделю',
+  'скажи привет коллеге',
+  'почисти базу данных',
+];
+
 function listen() {
-  console.log('слушаю');
+  return taskQueue.shift();
 }
 
-function think() {
-  console.log('думаю');
+function think(task) {
+  if (task.toLowerCase().includes('привет')) {
+    return 'Привет!';
+  }
+  return `Принял задачу: ${task}`;
 }
 
-function act() {
-  console.log('делаю');
+function act(task, decision) {
+  console.log(decision);
 }
 
 function tick() {
-  console.log('тик');
-  listen();
-  think();
-  act();
+  const t = listen();
+  if (t) act(t, think(t));
 }
 
 function shutdown() {
