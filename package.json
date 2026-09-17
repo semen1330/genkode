@@ -4,10 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node index.mjs"
+    "start": "node --env-file=.env index.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.109.0",
+    "openai": "^6.49.0",
     "ws": "^8.21.3"
   }
 }

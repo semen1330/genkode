@@ -1,5 +1,5 @@
 import config from './config.mjs';
-import { route } from './lib/router.mjs';
+import { ask } from './lib/llm.mjs';
 import { remember, recall } from './lib/memory.mjs';
 
 const TICK_MS = 1000;
@@ -20,8 +20,8 @@ function listen() {
   return taskQueue.shift();
 }
 
-function think(task) {
-  return route(task);
+async function think(task) {
+  return ask(task);
 }
 
 function act(task, decision) {
@@ -44,7 +44,7 @@ async function tick() {
     return;
   }
 
-  act(t, think(t));
+  act(t, await think(t));
 }
 
 function shutdown() {
