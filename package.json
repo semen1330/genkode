@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.109.0",
+    "node-telegram-bot-api": "^1.1.2",
     "openai": "^6.49.0",
     "ws": "^8.21.3"
   }

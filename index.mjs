@@ -1,6 +1,7 @@
 import config from './config.mjs';
 import { ask } from './lib/llm.mjs';
 import { remember, recall } from './lib/memory.mjs';
+import { startTelegram } from './lib/tg.mjs';
 
 const TICK_MS = 1000;
 let timer;
@@ -12,6 +13,8 @@ async function init() {
 
   console.log('агент запущен');
   console.log('Запущен агент:', config.name);
+
+  startTelegram(onTelegramMessage);
 }
 
 const taskQueue = ['/помощь', '/статус', 'просто текст'];
@@ -51,6 +54,10 @@ function shutdown() {
   clearInterval(timer);
   console.log('агент остановлен');
   process.exit(0);
+}
+
+function onTelegramMessage(text, chatId) {
+  console.log(`[telegram] ${chatId}: ${text}`);
 }
 
 await init();
