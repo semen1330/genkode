@@ -1,26 +1,22 @@
+import config from './config.mjs';
+import { route } from './lib/router.mjs';
+
 const TICK_MS = 1000;
 let timer;
 
 function init() {
   console.log('агент запущен');
+  console.log('Запущен агент:', config.name);
 }
 
-const taskQueue = [
-  'привет, как дела?',
-  'подготовь отчет за неделю',
-  'скажи привет коллеге',
-  'почисти базу данных',
-];
+const taskQueue = ['/помощь', '/статус', 'просто текст'];
 
 function listen() {
   return taskQueue.shift();
 }
 
 function think(task) {
-  if (task.toLowerCase().includes('привет')) {
-    return 'Привет!';
-  }
-  return `Принял задачу: ${task}`;
+  return route(task);
 }
 
 function act(task, decision) {
