@@ -4,6 +4,7 @@ import { ask } from './lib/llm.mjs';
 import { remember, recall } from './lib/memory.mjs';
 import { startTelegram } from './lib/tg.mjs';
 import { checkAgent } from './lib/nadzor.mjs';
+import { startServer } from './server.mjs';
 
 const TICK_MS = 1000;
 const WATCHDOG_MS = 5 * 60 * 1000;
@@ -19,6 +20,7 @@ async function init() {
   console.log('Запущен агент:', config.name);
 
   startTelegram(onTelegramMessage);
+  startServer();
 }
 
 const taskQueue = ['/помощь', '/статус', 'просто текст'];
