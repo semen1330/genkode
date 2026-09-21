@@ -5,6 +5,7 @@ import { remember, recall } from './lib/memory.mjs';
 import { startTelegram } from './lib/tg.mjs';
 import { checkAgent } from './lib/nadzor.mjs';
 import { startServer } from './server.mjs';
+import * as log from './lib/log.mjs';
 
 const TICK_MS = 1000;
 const WATCHDOG_MS = 5 * 60 * 1000;
@@ -12,6 +13,8 @@ let timer;
 let watchdogTimer;
 
 async function init() {
+  log.info('агент стартует');
+
   const lastStart = await recall('last_start');
   console.log(lastStart ? `Прошлый запуск: ${lastStart}` : 'первый запуск');
   await remember('last_start', new Date().toISOString());
@@ -46,6 +49,8 @@ async function rememberFromTask(task) {
 
 async function tick() {
   try {
+    log.info('тик...');
+
     const t = listen();
     if (!t) return;
 
@@ -55,6 +60,8 @@ async function tick() {
     }
 
     act(t, await think(t));
+  } catch (error) {
+    log.error('ошибка в тике: ' + error.message);
   } finally {
     try {
       await remember('heartbeat', new Date().toISOString());
